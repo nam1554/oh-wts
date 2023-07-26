@@ -7,13 +7,21 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        "ohstock-color0": "rgb(67, 68, 209)",
+        "ohstock-color2": "rgb(6, 143, 255)",
+        "ohstock-color3": "rgb(238, 238, 238)",
+        "ohstock-dark-color1": "rgb(18, 20, 23)",
+      },
+      backgroundColor: {
+        "ohstock-color0": "rgb(67, 68, 209)",
+        "ohstock-color1": "rgb(78, 79, 235)",
+        "ohstock-color2": "rgb(6, 143, 255)",
+        "ohstock-color3": "rgb(238, 238, 238)",
+        "ohstock-dark-color1": "rgb(18, 20, 23)",
       },
     },
   },
   darkMode: "media", //class
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
