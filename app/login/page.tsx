@@ -9,10 +9,11 @@ const Login: NextPage = () => {
       <section className="w-80">
         <div className="flex flex-col items-center space-y-10">
           <Image
-            src="../logo.svg"
+            src="/logo.svg"
             width={100}
             height={100}
             alt="OHSTOCK Logo"
+            priority
           />
         </div>
         <div className="mt-7">

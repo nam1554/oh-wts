@@ -11,10 +11,11 @@ const Enter: NextPage = () => {
       <section className="w-80">
         <div className="flex flex-col items-center space-y-10">
           <Image
-            src="../logo.svg"
+            src="/logo.svg"
             width={100}
             height={100}
             alt="OHSTOCK Logo"
+            priority
           />
           <div className="text-2xl font-medium">회원가입</div>
         </div>
