@@ -1,19 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { classNames } from "@libs/client/utils";
 
 const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "Backtesting", href: "#", current: false },
-  { name: "Chart", href: "#", current: false },
+  { name: "Home", href: "/", current: true },
+  { name: "Backtesting", href: "/stock/backtesting", current: false },
+  { name: "Chart", href: "/stock/chart", current: false },
 ];
 
 const Navbar = () => {
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/" className="flex items-center">
+        <Link href="/">
           <Image
             src="/logo.svg"
             width={50}
@@ -21,16 +22,16 @@ const Navbar = () => {
             alt="OHSTOCK Logo"
             priority
           />
-        </a>
+        </Link>
         <div className="flex md:order-2">
           <span className="text-gray-900 dark:text-white font-medium text-sm px-4 py-2 text-center mr-3 md:mr-0">
-            로그인
+            <Link href={"/login"}>로그인</Link>
           </span>
           <button
             type="button"
             className="text-white bg-ohstock-color1 hover:bg-ohstock-color0 focus:ring-1 focus:outline-none focus:ring-ohstock-color0 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0"
           >
-            회원가입
+            <Link href={"/enter"}>회원가입</Link>
           </button>
           <button
             data-collapse-toggle="navbar-sticky"
@@ -64,7 +65,7 @@ const Navbar = () => {
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {navigation.map((menu, index) => (
               <li key={index}>
-                <a
+                <Link
                   href={menu.href}
                   className={classNames(
                     "block py-2 pl-3 pr-4 rounded md:p-0",
@@ -75,7 +76,7 @@ const Navbar = () => {
                   aria-current="page"
                 >
                   {menu.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
