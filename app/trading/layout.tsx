@@ -1,9 +1,9 @@
 export const metadata = {
-  title: "OHSTOCK - 메인페이지",
-  description: "메인페이지",
+  title: "OHSTOCK - Trading System",
+  description: "Trading System",
 };
 
-export default function MainLayout({
+export default function TradingLayout({
   children,
 }: {
   children: React.ReactNode;

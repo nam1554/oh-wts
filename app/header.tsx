@@ -2,18 +2,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { classNames } from "@libs/client/utils";
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Backtesting", href: "/stock/backtesting", current: false },
-  { name: "Chart", href: "/stock/chart", current: false },
+  { name: "Dashboard", href: "/dashboard" },
+  { name: "Backtesting", href: "/backtesting" },
+  { name: "Trading", href: "/trading" },
 ];
 
-const Navbar = () => {
+const Header = () => {
+  const pathname = usePathname();
+  console.log(pathname);
+  const open = navigation.some((menu) => menu.href.startsWith(pathname));
   return (
-    <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <header
+      className={classNames(
+        "sticky top-0 z-20 w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-600",
+        open ? "block" : "hidden"
+      )}
+    >
+      <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link href="/">
           <Image
             src="/logo.svg"
@@ -63,27 +72,30 @@ const Navbar = () => {
           id="navbar-sticky"
         >
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            {navigation.map((menu, index) => (
-              <li key={index}>
-                <Link
-                  href={menu.href}
-                  className={classNames(
-                    "block py-2 pl-3 pr-4 rounded md:p-0",
-                    menu.current
-                      ? "text-white bg-ohstock-color1 md:bg-transparent md:text-ohstock-color1 md:dark:text-blue-500"
-                      : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ohstock-color1 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  )}
-                  aria-current="page"
-                >
-                  {menu.name}
-                </Link>
-              </li>
-            ))}
+            {navigation.map((menu, index) => {
+              const isActive = pathname.startsWith(menu.href);
+              return (
+                <li key={index}>
+                  <Link
+                    href={menu.href}
+                    className={classNames(
+                      "block py-2 pl-3 pr-4 rounded md:p-0",
+                      isActive
+                        ? "text-white bg-ohstock-color1 md:bg-transparent md:text-ohstock-color1 md:dark:text-blue-500"
+                        : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-ohstock-color1 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    )}
+                    aria-current="page"
+                  >
+                    {menu.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 
-export default Navbar;
+export default Header;
