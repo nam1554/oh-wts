@@ -13,7 +13,6 @@ const navigation = [
 
 const Header = () => {
   const pathname = usePathname();
-  console.log(pathname);
   const open = navigation.some((menu) => menu.href.startsWith(pathname));
   return (
     <header
